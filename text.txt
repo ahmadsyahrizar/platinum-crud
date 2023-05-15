@@ -1,0 +1,17 @@
+1. install react-redux dan @reduxjs/toolkit
+
+// CRUD 
+/ CREATE
+// READ => ✅
+// UPDATE
+// DELETE
+
+
+// connect 
+// redux toolkit
+
+// react context
+   // lebih mudah
+   // lebih ringkas
+   // bawaan native react js nya, jadi tidak perlu install2 lagi 
+   // mengurangi boilerplate

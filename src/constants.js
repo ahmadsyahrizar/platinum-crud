@@ -1,0 +1,1 @@
+export const API_LIST_USERS = 'https://reqres.in/api/users'

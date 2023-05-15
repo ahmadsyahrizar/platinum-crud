@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+// integrate data global redux to component User
+import { Card, Col, Container, ProgressBar } from "react-bootstrap";
+import { useEffect } from "react";
+//useSelector = get data global state dari store redux;
+//useDispatch =  function yg mengirimkan action ke store;
+import { useSelector, useDispatch } from "react-redux";
+import { getUsers } from "./redux/store/usersSlice";
 
-function App() {
+const User = () => {
+  const { error, isLoading, users } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  const dataUsers = users?.data || [];
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
+  if (isLoading) return <ProgressBar />;
+  if (error) return <div>Error !</div>;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Container fluid className="p-4">
 
-export default App;
+      <div style={{
+        marginTop: "5em",
+        display: "flex", 
+        justifyContent: "center", 
+        alignItems: "center", 
+        flexWrap: "wrap"
+      }}>
+
+      {dataUsers.map(({avatar,first_name, last_name, email, id}) => (
+        <Col xs={4} key={id}>
+          <Card className="mb-1" style={{width: "18rem"}}>
+            <Card.Img variant="top" src={avatar} />
+            <Card.Body>
+              <Card.Title>{first_name} {last_name}</Card.Title>
+              <Card.Text>{email}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      ))}
+      </div>
+    </Container>
+  );
+};
+
+export default User;
+
+
