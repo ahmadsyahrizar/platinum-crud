@@ -1,3 +1,5 @@
+// WILL BE REPLACED BY REACT ROUTER DOM
+// AND WILL CREATE SIGN UP PAGE
 // integrate data global redux to component User
 import {
   Card,
